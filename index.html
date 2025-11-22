@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeguBeca - Camila Rueda | CRea Seguros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1A3D6D 0%, #7F8FA6 50%, #2E6BB7 100%);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flyer {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(90deg, #5375E2, #7F8FA6, #1A3D6D);
+      padding: 24px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; }
+    .header-bg .emoji1 { position: absolute; top: 8px; left: 16px; font-size: 48px; }
+    .header-bg .emoji2 { position: absolute; bottom: 8px; right: 16px; font-size: 32px; }
+    .header-content { position: relative; z-index: 10; }
+    .header-subtitle { font-size: 10px; letter-spacing: 2px; margin-bottom: 8px; opacity: 0.8; }
+    .header h1 { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+    .header p { font-size: 14px; font-weight: 500; opacity: 0.95; }
+    .alert-bar {
+      background: linear-gradient(90deg, #f59e0b, #f97316);
+      padding: 12px 16px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .content { padding: 20px; }
+    .intro {
+      text-align: center;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #faf5ff, #fdf2f8);
+      padding: 16px;
+      border-radius: 16px;
+      border-left: 4px solid #9333ea;
+    }
+    .intro p { color: #374151; font-size: 13px; line-height: 1.6; }
+    .intro .highlight { font-weight: 700; color: #7c3aed; }
+    .intro .semibold { font-weight: 600; }
+    .section-title { text-align: center; font-weight: 700; color: #1f2937; margin-bottom: 12px; font-size: 13px; }
+    .benefits { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .benefit-card {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border: 1px solid #e9d5ff; padding: 12px;
+      border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s;
+    }
+    .benefit-card:hover { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .benefit-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 18px; flex-shrink: 0;
+    }
+    .benefit-icon.green { background: linear-gradient(135deg, #4ade80, #16a34a); }
+    .benefit-icon.blue { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+    .benefit-icon.purple { background: linear-gradient(135deg, #c084fc, #9333ea); }
+    .benefit-icon.pink { background: linear-gradient(135deg, #f472b6, #db2777); }
+    .benefit-card h4 { font-weight: 700; color: #1f2937; font-size: 13px; margin-bottom: 2px; }
+    .benefit-card p { color: #6b7280; font-size: 11px; }
+    .free-benefits {
+      background: linear-gradient(90deg, #10b981, #14b8a6);
+      border-radius: 16px; padding: 16px; margin-bottom: 16px; color: white;
+    }
+    .free-benefits h4 { font-weight: 700; text-align: center; margin-bottom: 8px; font-size: 13px; }
+    .free-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .free-item { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .stat-card { padding: 12px; border-radius: 12px; text-align: center; }
+    .stat-card.indigo { background: #eef2ff; }
+    .stat-card.purple { background: #faf5ff; }
+    .stat-card.pink { background: #fdf2f8; }
+    .stat-card .emoji { font-size: 24px; margin-bottom: 4px; }
+    .stat-card .label { font-size: 10px; color: #6b7280; }
+    .stat-card .value { font-weight: 700; font-size: 12px; }
+    .stat-card.indigo .value { color: #4338ca; }
+    .stat-card.purple .value { color: #7c3aed; }
+    .stat-card.pink .value { color: #db2777; }
+    .unique-box {
+      background: #fffbeb; border: 1px solid #fcd34d;
+      border-radius: 12px; padding: 12px; margin-bottom: 16px;
+    }
+    .unique-box p { text-align: center; color: #92400e; font-size: 11px; font-weight: 500; }
+    .unique-box .bold { font-weight: 700; }
+    .target { margin-bottom: 16px; }
+    .target h4 { font-weight: 700; color: #1f2937; font-size: 13px; text-align: center; margin-bottom: 8px; }
+    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+    .tag.purple { background: #f3e8ff; color: #7c3aed; }
+    .tag.pink { background: #fce7f3; color: #db2777; }
+    .tag.indigo { background: #e0e7ff; color: #4338ca; }
+    .tag.teal { background: #ccfbf1; color: #0d9488; }
+    .tag.orange { background: #ffedd5; color: #c2410c; }
+    .cta-btn {
+      display: block; width: 100%; background: linear-gradient(90deg, #F5C556, #F5C556);
+      color: white; text-align: center; padding: 16px; border-radius: 16px;
+      font-weight: 700; font-size: 15px; text-decoration: none;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 12px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    .cta-note { text-align: center; color: #9ca3af; font-size: 11px; margin-bottom: 16px; }
+    .advisor {
+      background: linear-gradient(135deg, #f9fafb, #faf5ff, #fdf2f8);
+      border-radius: 16px; padding: 16px; text-align: center;
+      border: 1px solid #e9d5ff;
+    }
+    .advisor-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%; margin: 0 auto 8px;
+      object-fit: cover;
+      border: 3px solid #9333ea;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .crea-logo {
+      width: 120px; height: auto; margin: 12px auto 4px;
+    }
+    .slogan {
+      font-size: 10px; color: #6b7280; font-weight: 500;
+      letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .advisor h3 { font-weight: 700; color: #1f2937; font-size: 16px; }
+    .advisor .title { color: #6b7280; font-weight: 500; font-size: 13px; }
+    .advisor .badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #9333ea, #db2777);
+      color: white; padding: 4px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; margin: 8px 0;
+    }
+    .advisor .contact { margin-top: 8px; }
+    .advisor .contact a {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; color: #6b7280; font-size: 12px; text-decoration: none;
+      margin: 4px 0; transition: color 0.3s;
+    }
+    .advisor .contact a:hover { color: #F5C556; }
+    .advisor .beacons {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 12px; background: #f3e8ff; color: #F5C556;
+      padding: 8px 16px; border-radius: 20px; font-size: 11px;
+      font-weight: 500; text-decoration: none; transition: background 0.3s;
+    }
+    .advisor .beacons:hover { background: #e9d5ff; }
+    .footer {
+      background: linear-gradient(90deg, #F65868, #F65868);
+      padding: 12px 16px; text-align: center;
+    }
+    .footer p { color: white; font-size: 11px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="flyer">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-bg">
+        <span class="emoji1">🎓</span>
+        <span class="emoji2">✨</span>
+      </div>
+      <div class="header-content">
+        <h1>SeguBeca</h1>
+        <p>La mejor inversión para el futuro de tu hijo</p>
+      </div>
+    </div>
+
+    <!-- Alert Bar -->
+    <div class="alert-bar">
+      💡 ¿Sabías que una carrera universitaria puede costar más de $1,000,000 MXN?
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Intro -->
+      <div class="intro">
+        <p>
+          <span class="highlight">No dejes al azar</span> la educación de quien más amas. 
+          Con SeguBeca, <span class="semibold">garantizas su futuro universitario</span> mientras proteges a toda tu familia.
+        </p>
+      </div>
+
+      <!-- Benefits -->
+      <h3 class="section-title">✨ ¿Qué incluye SeguBeca?</h3>
+      <div class="benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon green">💰</div>
+          <div>
+            <h4>Ahorro Inteligente</h4>
+            <p>Acumula el capital necesario en dólares o UDIs con rendimientos garantizados</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon blue">🛡️</div>
+          <div>
+            <h4>Protección Total</h4>
+            <p>Si llegas a faltar, tu hijo recibe el capital completo para su universidad</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon purple">📋</div>
+          <div>
+            <h4>Exención de Pagos</h4>
+            <p>Por invalidez o fallecimiento, la aseguradora paga las primas restantes</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon pink">🏥</div>
+          <div>
+            <h4>Asistencia Médica en EUA</h4>
+            <p>Segunda opinión médica, orientación hospitalaria y traductores incluidos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Benefits -->
+      <div class="free-benefits">
+        <h4>🎁 BENEFICIOS INCLUIDOS SIN COSTO:</h4>
+        <div class="free-grid">
+          <div class="free-item"><span>✓</span><span>Apoyo en Vida (AV)</span></div>
+          <div class="free-item"><span>✓</span><span>Asistencia Médica EUA</span></div>
+          <div class="free-item"><span>✓</span><span>Protección Patrimonial</span></div>
+          <div class="free-item"><span>✓</span><span>Anticipo Funerario</span></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card indigo">
+          <div class="emoji">👶</div>
+          <div class="label">Desde</div>
+          <div class="value">0 años</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="emoji">💵</div>
+          <div class="label">Desde</div>
+          <div class="value">$10,000 USD</div>
+        </div>
+        <div class="stat-card pink">
+          <div class="emoji">📅</div>
+          <div class="label">Pagos</div>
+          <div class="value">Flexibles</div>
+        </div>
+      </div>
+
+      <!-- Unique Box -->
+      <div class="unique-box">
+        <p>⚡ <span class="bold">ÚNICO:</span> Al cumplir 18 años, tu hijo recibe su ahorro + rendimientos con diferentes opciones de entrega según sus necesidades</p>
+      </div>
+
+      <!-- Target -->
+      <div class="target">
+        <h4>👨‍👩‍👧 ¿Es para ti?</h4>
+        <div class="tags">
+          <span class="tag purple">Papás</span>
+          <span class="tag pink">Mamás</span>
+          <span class="tag indigo">Abuelos</span>
+          <span class="tag teal">Tutores</span>
+          <span class="tag orange">Padrinos</span>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <a href="https://wa.me/529933004483?text=Hola%20Camila,%20me%20interesa%20cotizar%20SeguBeca%20para%20la%20educación%20de%20mi%20hijo" class="cta-btn" target="_blank">
+        💬 ¡COTIZA AHORA!
+      </a>
+      <p class="cta-note">Asesoría personalizada • Acompañamiento diferenciado </p>
+
+      <!-- Advisor -->
+      <div class="advisor">
+        <!-- INSTRUCCIÓN: Reemplaza "tu-foto.jpg" con la ruta de tu foto -->
+        <img src="fotos/campic.jpeg" alt="Camila Rueda" class="advisor-avatar">
+        <h3>Camila Rueda</h3>
+        <p class="title">Asesora Certificada</p>
+        <!-- INSTRUCCIÓN: Reemplaza "logo-crea.png" con la ruta de tu logo -->
+        <img src="fotos/CRealittle.png" alt="CRea Seguros" class="crea-logo">
+        <p class="slogan">CUIDADO, RESPALDO, ACOMPAÑAMIENTO</p>
+        <div class="contact">
+          <a href="mailto:camsmnyl@infinitummail.com">📧 camsmnyl@infinitummail.com</a>
+          <a href="tel:+529933004483">📱 993 300 4483</a>
+        </div>
+        <a href="https://beacons.ai/creaseguros.mx" class="beacons" target="_blank">🌐 Conoce más</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>El mejor legado que puedes dejar a tus hijos es su educación 💙</p>
+    </div>
+  </div>
+</body>
+</html>
